@@ -15,6 +15,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" Detail="{Binding Email}"></TextCell>
+<TextCell Text="{Binding Name}" Detail="{Binding Email}"></TextCell>
 
                 </DataTemplate>
             </ListView.ItemTemplate>
