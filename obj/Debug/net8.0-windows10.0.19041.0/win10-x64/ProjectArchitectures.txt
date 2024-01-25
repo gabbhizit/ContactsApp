@@ -1,0 +1,1 @@
+C:\Users\AG015741\source\repos\ContactsApp\ContactsAppMaui\ContactsAppMaui.csproj;x64
