@@ -20,7 +20,7 @@ namespace ContactsAppMaui.Models
         public static void UpdateContact(int contactId, Contact contact)
         {
             if (contactId != contact.ContactId) return;
-            var contactToUpdate=GetContatcById(contactId);
+            var contactToUpdate = _contacts.FirstOrDefault(x => x.ContactId == contactId); ;
             if (contactToUpdate != null)
             {
                 contactToUpdate.Address = contact.Address;
@@ -31,7 +31,38 @@ namespace ContactsAppMaui.Models
         }
         public static Contact GetContatcById(int contactId)
         {
-            return _contacts.FirstOrDefault(x => x.ContactId == contactId);
+            var contact = _contacts.FirstOrDefault(x => x.ContactId == contactId);
+            if (contact != null)
+            {
+                return new Contact
+                {
+                    ContactId = contact.ContactId,
+                    Name = contact.Name,
+                    Phone = contact.Phone,
+                    Address = contact.Address,
+                    Email = contact.Email,
+                };
+            }
+            return null;
+        }
+        public static void AddContact(Contact contact)
+        {
+            var maxId = _contacts.Max(x => x.ContactId);
+            contact.ContactId = maxId + 1;
+            _contacts.Add(contact);
+        }
+        public static void DeleteContact(int contactId)
+        {
+            var contact = _contacts.FirstOrDefault(x => x.ContactId == contactId);
+            if (contact != null)
+            {
+                _contacts.Remove(contact);
+            }
+        }
+        public static List<Contact> SearchContacts(string filterText)
+        { 
+            var contacts = _contacts.Where(x => !String.IsNullOrWhiteSpace(x.Name) && x.Name.Contains(filterText,StringComparison.OrdinalIgnoreCase) || !String.IsNullOrWhiteSpace(x.Email) && x.Email.Contains(filterText, StringComparison.OrdinalIgnoreCase) || !String.IsNullOrWhiteSpace(x.Phone) && x.Phone.Contains(filterText, StringComparison.OrdinalIgnoreCase) || !String.IsNullOrWhiteSpace(x.Address) && x.Address.Contains(filterText, StringComparison.OrdinalIgnoreCase)).ToList();
+            return contacts;
         }
     }
 }

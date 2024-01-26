@@ -3,22 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContactsAppMaui.Views.ContactsPage"
              Title="Contacts">
-    <VerticalStackLayout Spacing="10">
-        <Label 
-        Text="Welcome to .NET MAUI!"
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" />
-        <Button x:Name="btnAddContact" Text="Add Contact" Clicked="btnAddContact_Clicked"></Button>
-        <Button x:Name="btnEditContact" Text="Edit Contact" Clicked="btnEditContact_Clicked"></Button>
-        <ListView x:Name="listContacts" SeparatorColor="Green" BackgroundColor="Transparent" SeparatorVisibility="Default" RowHeight="50" 
-              ItemTapped="listContacts_ItemTapped" ItemSelected="listContacts_ItemSelected">
+    <Grid 
+        Padding="5"
+        RowDefinitions="50,*,50,5"
+          ColumnDefinitions="*">
+        <SearchBar Grid.Row="0"
+                   Grid.Column="0"
+                   x:Name="SearchBar"
+                   Placeholder="Search Contact"
+                   TextChanged="SearchBar_TextChanged"
+                   SearchButtonPressed="SearchBar_SearchButtonPressed"></SearchBar>
+        <ListView Grid.Row="1" Grid.Column="0" x:Name="listContacts" SeparatorColor="Green" BackgroundColor="Transparent" SeparatorVisibility="Default" RowHeight="50" 
+      ItemTapped="listContacts_ItemTapped" ItemSelected="listContacts_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Email}"></TextCell>
-<TextCell Text="{Binding Name}" Detail="{Binding Email}"></TextCell>
+                    <TextCell Text="{Binding Name}"
+                              Detail="{Binding Email}">
+                        <TextCell.ContextActions>
+                            <MenuItem
+                                Text="Delete"
+                                IsDestructive="True"
+                                Clicked="Delete_Clicked"
+                                CommandParameter="{Binding .}">
+                            </MenuItem>
+                        </TextCell.ContextActions>
+                    </TextCell>
+
 
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </VerticalStackLayout>
+        <Button Grid.Row="2" Grid.Column="0" x:Name="btnAddContact" Text="Add Contact" Clicked="btnAddContact_Clicked"></Button>
+    </Grid>
 </ContentPage>

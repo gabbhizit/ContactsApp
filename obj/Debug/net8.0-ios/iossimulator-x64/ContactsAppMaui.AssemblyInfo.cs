@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ContactsAppMaui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+174d7bc90985c66472136419600773d8fec7728f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ContactsAppMaui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ContactsAppMaui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
